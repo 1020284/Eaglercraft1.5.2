@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eaglercraft 1.5.2 Browser Edition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon (optional) -->
+    <link rel="icon" href="favicon.ico">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #24272a;
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: #181a1b;
+            padding: 1rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 8px #000a;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .eaglercraft-container {
+            margin: 2rem 0;
+            width: 90vw;
+            max-width: 1200px;
+            height: 70vh;
+            background: #11161d;
+            border-radius: 10px;
+            box-shadow: 0 4px 24px #000b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        iframe, canvas {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            border-radius: 10px;
+        }
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            background: #181a1b;
+            color: #aaa;
+            font-size: 0.95em;
+        }
+        .credits {
+            margin-top: 1rem;
+            color: #888;
+            font-size: 0.9em;
+        }
+        .start-info {
+            margin-bottom: 1rem;
+            font-size: 1.1em;
+        }
+        @media (max-width: 700px) {
+            .eaglercraft-container {
+                height: 55vw;
+                min-height: 320px;
+                max-width: 100vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Eaglercraft 1.5.2 - Browser Edition</h1>
+        <div class="credits">
+            by <a href="https://github.com/vidio-boy" target="_blank" style="color:#6cf;text-decoration:none;">vidio-boy</a>
+        </div>
+    </header>
+    <main>
+        <div class="start-info">
+            <p>Welcome! Play Minecraft 1.5.2 in your browser.<br>
+            <strong>Tip:</strong> For the best experience, use Chrome or Firefox on desktop.</p>
+        </div>
+        <div class="eaglercraft-container" id="game-container">
+            <!-- The game will be loaded here. Replace with your loader/canvas/iframe as needed. -->
+            <noscript>
+                <p style="color:#fff;text-align:center;">JavaScript is required to run Eaglercraft 1.5.2!</p>
+            </noscript>
+            <canvas id="eaglercraft-canvas">
+                Your browser does not support HTML5 Canvas. Please use a modern browser.
+            </canvas>
+        </div>
+        <div class="credits">
+            Eaglercraft 1.5.2 is a recreation of Minecraft 1.5.2 for the browser.<br>
+            Not affiliated with Mojang or Microsoft.
+        </div>
+    </main>
+    <div class="footer">
+        &copy; 2025 vidio-boy &bull; <a href="https://github.com/vidio-boy/Eaglercraft1.5.2" target="_blank" style="color:#6cf;">GitHub Repo</a>
+    </div>
+    <!-- Game loader script -->
+    <script>
+        // Example: Replace with your actual Eaglercraft 1.5.2 loader or game entrypoint
+        // For example, if your build outputs to eaglercraft.js and expects a canvas with id "eaglercraft-canvas":
+        window.addEventListener("DOMContentLoaded", function() {
+            if(typeof Eaglercraft !== 'undefined' && Eaglercraft.start) {
+                Eaglercraft.start(document.getElementById('eaglercraft-canvas'));
+            } else {
+                // Attempt to load the main Eaglercraft script
+                var script = document.createElement("script");
+                script.src = "eaglercraft.js";
+                script.onload = function() {
+                    if(typeof Eaglercraft !== 'undefined' && Eaglercraft.start) {
+                        Eaglercraft.start(document.getElementById('eaglercraft-canvas'));
+                    } else {
+                        document.getElementById('game-container').innerHTML =
+                            "<p style='color:#f66;text-align:center;'>Failed to load Eaglercraft. Please check your setup.</p>";
+                    }
+                };
+                script.onerror = function() {
+                    document.getElementById('game-container').innerHTML =
+                        "<p style='color:#f66;text-align:center;'>Could not load eaglercraft.js.<br>Make sure it is present in your project directory.</p>";
+                };
+                document.body.appendChild(script);
+            }
+        });
+    </script>
+</body>
+</html>
